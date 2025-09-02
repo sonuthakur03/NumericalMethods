@@ -19,7 +19,7 @@ int main() {
 
     do{
         c = (a + b) / 2;
-        if(f(c)*f(a) > 0){
+        if(f(c) < 0){
             a = c;
         }else{
             b = c;
