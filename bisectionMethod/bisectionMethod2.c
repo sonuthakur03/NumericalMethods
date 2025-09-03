@@ -1,30 +1,39 @@
+// x^2-4x-10
+
 #include <stdio.h>
 #include <math.h>
 
-double f(double x){
-    return x*x-4*x-10;
+double f(double x)
+{
+    return x * x - 4 * x - 10;
 }
 
-int main() {
+int main()
+{
     double a, b, c, E;
     printf("Enter initial intervals (a,b): ");
     scanf("%lf %lf", &a, &b);
     printf("Enter error tolerance (E): ");
     scanf("%lf", &E);
 
-    if(f(a)*f(b) > 0){
+    if (f(a) * f(b) > 0)
+    {
         printf("No real root in this interval!");
         return 0;
     }
 
-    do{
+    do
+    {
         c = (a + b) / 2;
-        if(f(c) < 0){
+        if (f(c) < 0)
+        {
             a = c;
-        }else{
+        }
+        else
+        {
             b = c;
         }
-    }while(fabs(f(c)) > E);
+    } while (fabs(f(c)) > E);
 
     printf("Root: %f\n", c);
     return 0;
