@@ -19,21 +19,24 @@ int main()
 
     if (f(a) * f(b) > 0)
     {
-        printf("No real root in this interval!");
+        printf("No real root in this interval!\n");
         return 0;
     }
 
     do
     {
         c = (a + b) / 2;
-        if (f(c) < 0)
-        {
-            a = c;
-        }
-        else
+
+        // Update the interval based on the sign of f(a)*f(c)
+        if (f(a) * f(c) < 0)
         {
             b = c;
         }
+        else
+        {
+            a = c;
+        }
+
     } while (fabs(f(c)) > E);
 
     printf("Root: %f\n", c);
