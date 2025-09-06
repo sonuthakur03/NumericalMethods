@@ -1,12 +1,12 @@
-// x² - 5x + 6
-// Enter initial intervals(a, b) : 1 4 Enter error tolerance(E) : 0.0001 Enter Maximum Iterations(N) : 20
+// x² - 4x + 3
+// Enter initial intervals(a, b) : 2 4 Enter error tolerance(E) : 0.0001 Enter Maximum Iterations(N) : 20
 
 #include <stdio.h>
 #include <math.h>
 
 double f(double x)
 {
-    return x * x - 5 * x + 6;
+    return x * x - 4 * x + 3;
 }
 
 int main()
