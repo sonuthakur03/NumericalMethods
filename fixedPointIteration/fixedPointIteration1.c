@@ -1,3 +1,6 @@
+// 2cosx / 3
+// Inital Guess(x0) = 0.5, Error Tolerance(E) = 0.00001, Maximum Iterations(n) = 50
+
 #include <stdio.h>
 #include <math.h>
 
@@ -10,9 +13,9 @@ int main()
 {
     double x0, x1, E, err;
     int I, N;
-    printf("initial guess(x0): ");
+    printf("Initial guess(x0): ");
     scanf("%lf", &x0);
-    printf("Error tolerance(E): ");
+    printf("Error Tolerance(E): ");
     scanf("%lf", &E);
     printf("Maximum Iterations(N): ");
     scanf("%d", &N);
