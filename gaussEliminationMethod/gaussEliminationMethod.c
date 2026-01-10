@@ -7,7 +7,7 @@
 int main()
 {
     int n, i, j, k;
-    double A[MAX][MAX + 1], X[MAX];
+    double A[MAX][MAX + 1], X[MAX], sum;
     double ratio;
 
     printf("How many unknowns: ");
@@ -22,36 +22,38 @@ int main()
         }
     }
 
-    /* Gauss-Jordan Elimination */
-    for (j = 0; j < n; j++)
+    /* 1. Forward Elimination (to Upper Triangular Matrix) */
+    for (j = 0; j < n - 1; j++)
     {
-        // Check for zero pivot element to avoid division by zero
         if (fabs(A[j][j]) < 0.00001)
         {
-            printf("Error: Pivot element is zero! No unique solution exists.");
+            printf("Error: Pivot element is zero! Row swapping needed.");
             getch();
             return 0;
         }
 
-        for (i = 0; i < n; i++)
+        for (i = j + 1; i < n; i++)
         {
-            // Eliminate elements above and below the pivot
-            if (i != j)
-            {
-                ratio = A[i][j] / A[j][j];
+            ratio = A[i][j] / A[j][j];
 
-                for (k = 0; k <= n; k++)
-                {
-                    A[i][k] = A[i][k] - ratio * A[j][k];
-                }
+            for (k = j; k <= n; k++)
+            {
+                A[i][k] = A[i][k] - ratio * A[j][k];
             }
         }
     }
 
-    /* Obtaining the solutions from the diagonal matrix */
-    for (i = 0; i < n; i++)
+    /* 2. Back Substitution */
+    X[n - 1] = A[n - 1][n] / A[n - 1][n - 1];
+
+    for (i = n - 2; i >= 0; i--)
     {
-        X[i] = A[i][n] / A[i][i];
+        sum = 0;
+        for (j = i + 1; j < n; j++)
+        {
+            sum = sum + A[i][j] * X[j];
+        }
+        X[i] = (A[i][n] - sum) / A[i][i];
     }
 
     /* Output the solutions */
